@@ -87,3 +87,12 @@ Traza · AG-001, AG-002, SK-004, WF-003
 - **Dado** especificación congelada y pruebas del evaluador separadas.
 - **Cuando** se entrega un candidato.
 - **Entonces** cada resultado registra criterio, datos de entrada, resultado esperado y observado, con estado pendiente si falta ejecución.
+
+### AC-012: Normalización de fuentes reales
+
+Traza · BR-011, BR-012, INV-006, INV-007
+
+- Dado un feed oficial con GPS válido y sin retraso para un viaje.
+- Cuando se normaliza y se representa.
+- Entonces la posición procede del GPS publicado, el retraso es desconocido, el producto ausente se identifica como sin clasificar y se conservan las horas originales de las fuentes.
+- Si falla la consulta de posiciones, la petición falla y la interfaz conserva la última vista o comunica que aún no se ha recibido ninguna posición.

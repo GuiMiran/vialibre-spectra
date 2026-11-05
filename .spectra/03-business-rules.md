@@ -12,3 +12,6 @@ Fuente de cada regla observada entre paréntesis. Las reglas proceden del produc
 - BR-008: Conservar selección de tipos, zona y opción de omitir el aviso inicial. Primera visita con todos los tipos soportados activos y zona «Toda España». Fallos de almacenamiento se toleran (guardado, activos, zona, portada).
 - BR-009: Los totales reflejan los tipos activos en toda la flota. El recuento de retrasos usa ≥5. El indicador central toma el elemento en índice piso(n/2) tras ordenar retrasos no negativos y muestra 0 cuando está vacío (pintarLista). Con [0,10] muestra 10.
 - BR-010: El mapa admite zoom y arrastre, incluido gesto de pinza. Seleccionar desde la lista centra el tren y abre su ficha. Cerrar la ficha elimina la selección (eventos SVG, seleccionar, pintarFicha).
+
+- BR-011: La vista real muestra exclusivamente datos normalizados de los feeds oficiales de Renfe. El modo demo requiere la selección explícita de su URL. Un fallo de la fuente real conserva la última vista recibida o muestra ausencia de datos.
+- BR-012: Un retraso ausente se representa como desconocido, en azul, y queda excluido de la mediana y de la lista de demoras. Las posiciones sin producto identificable se agrupan como sin clasificar. Se conservan las marcas temporales de GPS y retrasos.
