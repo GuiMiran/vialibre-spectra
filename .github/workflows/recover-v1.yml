@@ -1,0 +1,32 @@
+name: Restore saved first version
+on:
+  push:
+    branches: [recovered-v1]
+    paths: [.github/workflows/recover-v1.yml]
+permissions:
+  contents: write
+jobs:
+  restore:
+    if: github.event.head_commit.message == 'Restore first version from saved source'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: recovered-v1
+          fetch-depth: 0
+      - name: Download and verify saved source
+        run: |
+          curl --fail --location --max-time 60 'https://vialibre-spectra-demo.glossyberyl2.chatgpt.site/releases/vialibre-v1-source.tar.gz' -o /tmp/vialibre-v1-source.tar.gz
+          echo 'c32ebf9cdea42c6915c29e1619956e1b17e0f8a122926f2b6ab818b7c3eae9ef  /tmp/vialibre-v1-source.tar.gz' | sha256sum --check -
+          tar -xzf /tmp/vialibre-v1-source.tar.gz
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run check && npm test
+      - name: Publish recovered files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m 'Publish recovered first version with Renfe and SPECTRA'
+          git push origin HEAD:recovered-v1
